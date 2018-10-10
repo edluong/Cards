@@ -28,7 +28,7 @@ class Card:
                 13: 'King'
             }
             return rankName.get(self.rank,'Invalid Rank') + ' of ' + self.suit + 's'
-        elif self.rank > 1 and self.rank < 10:
+        elif self.rank > 1 and self.rank <= 10:
             return str(self.rank) + ' of ' + self.suit + 's'
         else:
             return 'Invalid Card'
