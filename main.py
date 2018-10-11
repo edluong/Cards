@@ -1,23 +1,42 @@
-# from cards import Card
+from game import Game
+from player import Player
 
-# testQueen = Card('Heart',12)
-# testJack = Card('Club',11)
-# testAce = Card('Diamond',1)
-# testKing = Card('Spade',13) 
-# testCard = Card('Club',2)
-# testInvalid = Card('Hearts',32)
+#create the game and the table to seat the Players
+g = Game()
+table = []
+gameloop = True
 
-# print(testQueen)
-# print(testJack)
-# print(testAce)
-# print(testKing)
-# print(testCard)
-# print(testInvalid)
+#load the players
+#-- load the "hero" or person playing against CPU
+playerName = input('Enter name: ')
+buyIn = input('How much to buy in (MAX Buy In is:'+ str(g.MAX_BUYIN) +'): ')
+hero = Player(playerName,stackSize = buyIn)
 
-from deck import Deck
+print('hero stack size: '+ str(hero.getStackSize()))
 
-deck = Deck()
-deck.displayDeck()
-deck.shuffleDeck()
-print(end='\n')
-deck.displayDeck()
+#-- load hardcoded CPU
+robot = Player('CPU1',stackSize = g.MAX_BUYIN)
+print('robot stack size: '+ str(robot.getStackSize()))
+
+#-- seat the players so the game can pick who is dealer
+#--- seat the players at the table
+table.append(hero)
+table.append(robot)
+#---associate the table to the game
+g.seatPlayers(table)
+print(g.getListofPlayers())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

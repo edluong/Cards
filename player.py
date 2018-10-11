@@ -12,19 +12,24 @@ class Player:
         - can display hand
     '''
 
-    def __init__(self,name,isDealer = False,stackSize = 0,hand = None):
+    def __init__(self,name,isDealer = False,isInRound = False,stackSize = 0,hand = None):
         if hand == None:
             hand = Hand([])
         self.name = name
         self.hand = hand
         self.cards = hand.hand
         self.isDealer = isDealer
+        self.isInRound = isInRound
+        self.stackSize = stackSize
        
     def getStackSize(self):
         return self.stackSize
     
     def setStackSize(self,stackSize):
         self.stackSize = stackSize
+    
+    def getName(self):
+        return self.name
 
     def bet(self,betAmount):
         newStackSize = self.stackSize - betAmount
