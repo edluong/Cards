@@ -1,6 +1,6 @@
 class Card:
     '''
-        Implementation of a playing card. Representing the information using a tuple
+        Implementation of a playing card.
     '''
 
     def __init__(self,suit,rank):

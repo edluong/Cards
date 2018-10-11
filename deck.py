@@ -4,6 +4,9 @@ from random import shuffle
 class Deck:
     '''
         creates a standard deck of playing cards
+        requirements:
+        - Holds all of the cards
+        - Shuffle the deck
     '''
     suit = ['Club','Diamond','Heart','Spade']
     rank = []
