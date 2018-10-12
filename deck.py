@@ -28,4 +28,9 @@ class Deck:
     # shuffle the deck
     def shuffleDeck(self):
         shuffle(self.deck)
+
+    #return the top card from the deck
+    #@return a Card object
+    def deal(self):
+        return self.deck.pop(0) # get the first card from the deck stack 
     

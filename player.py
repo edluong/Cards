@@ -13,8 +13,6 @@ class Player:
     '''
 
     def __init__(self,name,isDealer = False,isInRound = False,stackSize = 0,hand = None):
-        if hand == None:
-            hand = Hand([])
         self.name = name
         self.hand = hand
         self.cards = hand.hand
@@ -25,9 +23,11 @@ class Player:
     def getStackSize(self):
         return self.stackSize
     
+    #set the stack size of the Player
     def setStackSize(self,stackSize):
         self.stackSize = stackSize
     
+    #get the name of the Player
     def getName(self):
         return self.name
 

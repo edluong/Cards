@@ -21,3 +21,5 @@ deck.displayDeck()
 deck.shuffleDeck()
 print(end='\n')
 deck.displayDeck()
+
+print(deck.deal())
