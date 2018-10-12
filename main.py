@@ -30,7 +30,7 @@ robot = Player('CPU1',stackSize = g.MAX_BUYIN,hand = Hand(g.MAX_HAND_SIZE))
 #--- seat the players at the table
 table.append(hero)
 table.append(robot)
-#---associate the table to the game
+#--- associate the table to the game
 g.seatPlayers(table)
 
 #pick the dealer and then print out the table statistics
@@ -38,12 +38,9 @@ g.pickDealer()
 print(g.getTableStatistics())
 
 g.dealNewHand(hero)
-for card in hero.getHeldHand():
-    print(card)
+print(hero.getHeldHand())
 
 g.dealNewHand(robot)
-for card in robot.getHeldHand():
-    print(card)
 
 
 

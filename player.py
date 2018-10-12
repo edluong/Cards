@@ -42,7 +42,10 @@ class Player:
             self.stackSize = self.stackSize - betAmount
    
     def getHeldHand(self):
-        return self.cards  
+        heldhand = self.name + ': '
+        for card in self.hand.getHeldCards():
+            heldhand += '(' + str(card)+ ')' +' '  
+        return heldhand
     
     def setDealerStatus(self,status):
         self.isDealer = status

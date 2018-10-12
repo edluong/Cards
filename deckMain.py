@@ -15,11 +15,15 @@
 # print(testInvalid)
 
 from deck import Deck
+from hand import Hand
+
 
 deck = Deck()
 deck.displayDeck()
 deck.shuffleDeck()
 print(end='\n')
 deck.displayDeck()
-
 print(deck.deal())
+
+
+
