@@ -52,7 +52,8 @@ class Game:
     def getTableStatistics(self):
         return (
                 str(len(self.table))+' players at the table.\n'
-               'Blinds are $'+ str(self.SMALL_BLIND) +'/$'+ str(self.BIG_BLIND)+'.'
+               #'Blinds are $'+ str(self.SMALL_BLIND) +'/$'+ str(self.BIG_BLIND)+'.'
+               + self.getBlinds()
                +'\n' + self.getDealerName() + ' is the Dealer.'
         ) 
 
@@ -75,6 +76,9 @@ class Game:
         while(cards_left > 0):
             Player.hand.addCard(self.deck.deal())
             cards_left = cards_left - 1
+
+    def getBlinds(self):
+        return 'Blinds are $'+ str(self.SMALL_BLIND) +'/$'+ str(self.BIG_BLIND)+'.'
 
     
  

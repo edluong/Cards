@@ -17,6 +17,7 @@ gameloop = True
 #load the players
 #-- load the "hero" or person playing against CPU
 playerName = input('Enter name: ')
+print(g.getBlinds())
 buyIn = input('How much to buy in (MAX Buy In is: '+ str(g.MAX_BUYIN) +'): ')
 hero = Player(playerName,stackSize = buyIn,hand = Hand(g.MAX_HAND_SIZE))
 

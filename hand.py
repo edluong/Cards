@@ -17,10 +17,15 @@ class Hand:
     
     def getHeldCards(self):
         return self.hand
-
     
     def addCard(self,Card):
         self.hand.append(Card)
+
+    def getHandRanks(self):
+        rank = []
+        for card in self.hand:
+            rank.append(card.getRank()) 
+        return rank
     
     def isWinningHand(self):
         pass # implement later

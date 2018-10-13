@@ -13,17 +13,29 @@
 # print(testKing)
 # print(testCard)
 # print(testInvalid)
-
+import sys
+sys.path.append('../testers')
 from deck import Deck
 from hand import Hand
 
-
+max_hand_size = 2
+h1 = Hand(max_hand_size)
+h2 = Hand(max_hand_size)
+board = []
 deck = Deck()
-deck.displayDeck()
-deck.shuffleDeck()
-print(end='\n')
-deck.displayDeck()
-print(deck.deal())
+
+x = 0 
+while x < max_hand_size:
+    h1.addCard(deck.deal())
+    h2.addCard(deck.deal())
+    x+=1
+
+for card in h1.getHeldCards():
+    print(card,end ='')
+
+
+
+    
 
 
 
