@@ -15,11 +15,7 @@ h.addCard(Card('Diamond',2))
 h.addCard(Card('Club',7))
 h.addCard(Card('Heart',8))
 
-# true
-if pu.isPair(h):
-    print('pass!')
-else:
-    print('fail...')
+print(pu.handRanking(h))
 
 #is not a pair
 h1.addCard(Card('Heart',13))
@@ -28,13 +24,7 @@ h1.addCard(Card('Diamond',2))
 h1.addCard(Card('Club',7))
 h1.addCard(Card('Heart',8))
 
-# fail
-if pu.isPair(h1):
-    print('pass!')
-else:
-    print('fail...')
-
-#print(h.getHeldCards())
+print(pu.handRanking(h1))
 
 
 p = Player('Ed', hand = h)
