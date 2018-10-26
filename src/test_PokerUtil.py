@@ -6,33 +6,32 @@ from player import Player
 pu = PokerUtil()
 
 # is a pair
-h = Hand(5)
-h1 = Hand(5)
+nothin = Hand(5)
+pair = Hand(5)
+trips = Hand(5)
 
-h.addCard(Card('Heart',13))
-h.addCard(Card('Club',10))
-h.addCard(Card('Diamond',11))
-h.addCard(Card('Club',1))
-h.addCard(Card('Heart',12))
+# load a nothing hand (Darn :/, time to fold)
+nothin.addCard(Card('Club',6))
+nothin.addCard(Card('Heart',10))
+nothin.addCard(Card('Spade',11))
+nothin.addCard(Card('Diamond',1))
+nothin.addCard(Card('Club',12))
 
-#print(pu.handRanking(h))
-print(pu.isStraight(h))
+# load a pair hand (Aces, baby!)
+pair.addCard(Card('Heart',1))
+pair.addCard(Card('Club',1))
+pair.addCard(Card('Diamond',12))
+pair.addCard(Card('Club',7))
+pair.addCard(Card('Heart',8))
 
-#is not a pair
-h1.addCard(Card('Heart',13))
-h1.addCard(Card('Club',13))
-h1.addCard(Card('Diamond',13))
-h1.addCard(Card('Club',7))
-h1.addCard(Card('Heart',8))
+# load a pair of trips (AKA three of a kind)
+trips.addCard(Card('Heart',13))
+trips.addCard(Card('Club',13))
+trips.addCard(Card('Diamond',13))
+trips.addCard(Card('Club',7))
+trips.addCard(Card('Heart',8))
 
-#print(pu.handRanking(h1))
-
-
-p = Player('Ed', hand = h)
-
-#print(p.getHeldHand())
-
-
-
-
+print(pu.handRanking(nothin))
+print(pu.handRanking(pair))
+print(pu.handRanking(trips))
 

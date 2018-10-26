@@ -3,17 +3,6 @@
 import collections as collections 
 class PokerUtil:
 
-    def isPair(self,Hand):
-        '''
-            @parameter Hand object
-            @return boolean if hand is a pair or not
-        '''
-        for rank in Hand.getHandRanks():
-            if Hand.getHandRanks().count(rank) > 1:
-                return True
-            else:
-                return False
-    
     def handPairSum(self,Hand):
         '''
             returns the sum of the count of rank in the Hand
@@ -49,17 +38,39 @@ class PokerUtil:
         else:
             return False 
 
-
     def isFlush(self,Hand):
-        pass
+        '''
+            Determine if a hand is Flush
+        '''
+        #initiate some method variables
+        hand = Hand.getHeldCards()
+        hand_suit = []
+
+        for card in hand:
+            hand_suit.append(card.getSuit())
+
+        # if there is only one type of suit in the hand
+        # forcing the list into a set will delete the duplicates therefore the set should only be left with 1 suit
+        if len(set(hand_suit)) == 1: 
+            return True
+        else:
+            return False
 
     def flushOrStraight(self,Hand):
         
-        #check for straight
-        
-            
+        #check for flush, if true double check for straight
+        flush = self.isFlush(Hand)
+        straight = self.isStraight(Hand)
 
-        return ('flush or straight',4)
+        if flush:
+            if straight:
+                return ('straight flush', 8)
+            else:
+                return ('flush', 5)
+        elif straight:
+            return ('straight', 4)
+        else:
+            return ('Nothing', 0)
 
     def handRanking(self,Hand):
         '''
