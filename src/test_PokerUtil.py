@@ -5,10 +5,14 @@ from player import Player
 
 pu = PokerUtil()
 
-# is a pair
 nothin = Hand(5)
 pair = Hand(5)
 trips = Hand(5)
+straight = Hand(5)
+flush = Hand (5)
+fullhouse = Hand(5)
+quads = Hand(5)
+straightflush = Hand(5)
 
 # load a nothing hand (Darn :/, time to fold)
 nothin.addCard(Card('Club',6))
