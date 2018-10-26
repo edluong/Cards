@@ -26,6 +26,3 @@ class Hand:
         for card in self.hand:
             rank.append(card.getRank()) 
         return rank
-    
-    def isWinningHand(self):
-        pass # implement later

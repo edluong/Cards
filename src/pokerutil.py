@@ -1,3 +1,6 @@
+# imported to checked against the Broadway Straight (hardcoded for now)
+# Example: A K Q J 10
+import collections as collections 
 class PokerUtil:
 
     def isPair(self,Hand):
@@ -20,7 +23,42 @@ class PokerUtil:
             pairList.append(Hand.getHandRanks().count(rank))
         return sum(pairList)
 
+    def isStraight(self,Hand):
+        '''
+            A method that will return if a Hand provided is a Straight
+        '''
+
+        #initialize method variables
+        count = 0 
+        BROADWAY = [1,10,11,12,13] # biggest possible straight in poker; nickname for it
+        hand_rank = []
+        for card in Hand.getHeldCards():
+            hand_rank.append(card.getRank())
+        hand_size = Hand.getHandSize()
+        hand_rank.sort()
+        
+        # compare if the next element in the list of ranks to see if it is 1 larger
+        for i in range(0,hand_size-1):
+            if hand_rank[i + 1] == hand_rank[i] + 1:
+                count += 1
+
+        # count how many card rank are 1 greater than the previous suit 
+        # OR check if the straight is a Broadway straight 
+        if count == hand_size - 1 or collections.Counter(hand_rank) == collections.Counter(BROADWAY):
+            return True
+        else:
+            return False 
+
+
+    def isFlush(self,Hand):
+        pass
+
     def flushOrStraight(self,Hand):
+        
+        #check for straight
+        
+            
+
         return ('flush or straight',4)
 
     def handRanking(self,Hand):
