@@ -64,11 +64,11 @@ class PokerUtil:
 
         if flush:
             if straight:
-                return ('straight flush', 8)
+                return ('Straight Flush', 8)
             else:
-                return ('flush', 5)
+                return ('Flush', 5)
         elif straight:
-            return ('straight', 4)
+            return ('Straight', 4)
         else:
             return ('Nothing', 0)
 
@@ -83,9 +83,9 @@ class PokerUtil:
         else:
             pairDict = {
                 5: self.flushOrStraight,
-                7:('pair',1),
-                9:('two pair',2),
-                11:('Three of a kind',3),
+                7:('Pair',1),
+                9:('Two Pair',2),
+                11:('Three of a Kind',3),
                 13:('Full House',6),
                 17:('Quads',7)
             }
