@@ -1,5 +1,5 @@
 TO DO:
-- finish testing handRanking method in PokerUtil
+- rewrite handRanking method due to new HandPairRank (take in account of 7 cards)
 - make the methods in PokerUtil static
 - write a compareHands pokerUtil function to determine the winning hand; need to modify the tuple that handRanking returns
 
