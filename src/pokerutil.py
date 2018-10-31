@@ -3,14 +3,40 @@
 import collections as collections 
 class PokerUtil:
 
-    def handPairSum(self,Hand):
+    def handPairRank(self,Hand):
         '''
             returns the sum of the count of rank in the Hand
         '''
         pairList = []
-        for rank in Hand.getHandRanks():
-            pairList.append(Hand.getHandRanks().count(rank))
-        return sum(pairList)
+        hand_ranks = Hand.getHandRanks()
+
+        for rank in hand_ranks:
+            pairList.append(hand_ranks.count(rank))
+
+        zip_pair_list = list(zip(pairList,hand_ranks))
+        result = []
+
+        for pairCount,rank in zip_pair_list:
+            if pairCount >= 2:
+                result.append((rank,pairCount))
+        
+        set_result = list(set(result))
+
+        # can't distinguish between two pair and quads
+        # run logic to determine which is the result and structure the result
+
+        if len(result) == 4: 
+            if len(set_result) == 2:
+                return ('Two Pair',set_result,2)
+            else:    
+                return ('Four of a Kind',set_result, 7)
+        else:
+            pairDict = {
+                2: ('Pair',set_result, 1), # (description of ranking, rank, strength)
+                3: ('Three of a Kind',set_result, 3),
+                5: ('Full House',set_result,6) # figure out how to get the correct list [trips rank,pair rank]
+            }
+            return pairDict[len(result)] 
 
     def isStraight(self,Hand):
         '''
@@ -76,13 +102,14 @@ class PokerUtil:
         '''
             determines the ranking of hands and returns a tuple containing the hand name and value 
         '''
-        sumPair = self.handPairSum(Hand)
-
-        if sumPair == 5:
+        sumPair = self.handPairRank(Hand)
+        
+        if sumPair == Hand.getMaxSize():
+          
             return self.flushOrStraight(Hand)
         else:
             pairDict = {
-                5: self.flushOrStraight,
+                #5: self.flushOrStraight,
                 7:('Pair',1),
                 9:('Two Pair',2),
                 11:('Three of a Kind',3),

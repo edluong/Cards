@@ -22,6 +22,7 @@ nothin.addCard(Card('Spade',11))
 nothin.addCard(Card('Diamond',1))
 nothin.addCard(Card('Club',12))
 
+
 # load a pair hand (Aces, baby!)
 pair.addCard(Card('Heart',1))
 pair.addCard(Card('Club',1))
@@ -49,6 +50,7 @@ straight.addCard(Card('Club',10))
 straight.addCard(Card('Diamond',11))
 straight.addCard(Card('Club',12))
 straight.addCard(Card('Heart',13))
+
 
 # flush
 flush.addCard(Card('Spade',6))
@@ -78,17 +80,18 @@ straight_flush.addCard(Card('Spade',11))
 straight_flush.addCard(Card('Spade',12))
 straight_flush.addCard(Card('Spade',13))
 
+# print(pu.handRanking(nothin))
+# print(pu.handRanking(pair))
+# print(pu.handRanking(two_pair))
+# print(pu.handRanking(trips))
+# print(pu.handRanking(straight))
+# print(pu.handRanking(flush))
+# print(pu.handRanking(fullhouse))
+# print(pu.handRanking(quads))
+# print(pu.handRanking(straight_flush))
 
-print(pu.handRanking(nothin))
-print(pu.handRanking(pair))
-print(pu.handRanking(two_pair))
-print(pu.handRanking(trips))
-print(pu.handRanking(straight))
-print(pu.handRanking(flush))
-print(pu.handRanking(fullhouse))
-print(pu.handRanking(quads))
-print(pu.handRanking(straight_flush))
-
-
-
-
+print(pu.handPairRank(pair))
+print(pu.handPairRank(two_pair))
+print(pu.handPairRank(trips))
+print(pu.handPairRank(fullhouse))
+print(pu.handPairRank(quads))
