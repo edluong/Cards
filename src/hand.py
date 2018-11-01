@@ -29,3 +29,9 @@ class Hand:
         for card in self.hand:
             rank.append(card.getRank()) 
         return rank
+    
+    def getMinRank(self):
+        return min(self.getHandRanks())
+    
+    def getMaxRank(self):
+        return max(self.getHandRanks())

@@ -90,8 +90,15 @@ straight_flush.addCard(Card('Spade',13))
 # print(pu.handRanking(quads))
 # print(pu.handRanking(straight_flush))
 
+print(pu.flushOrStraight(nothin))
 print(pu.handPairRank(pair))
 print(pu.handPairRank(two_pair))
 print(pu.handPairRank(trips))
+print(pu.flushOrStraight(straight))
+print(pu.flushOrStraight(flush))
 print(pu.handPairRank(fullhouse))
 print(pu.handPairRank(quads))
+print(pu.flushOrStraight(straight_flush))
+print(pu.handPairRank(nothin))
+
+

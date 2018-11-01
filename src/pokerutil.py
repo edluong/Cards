@@ -27,14 +27,15 @@ class PokerUtil:
 
         if len(result) == 4: 
             if len(set_result) == 2:
-                return ('Two Pair',set_result,2)
+                return (2,'Two Pair',set_result)
             else:    
-                return ('Four of a Kind',set_result, 7)
+                return (7,'Four of a Kind',set_result)
         else:
             pairDict = {
-                2: ('Pair',set_result, 1), # (description of ranking, rank, strength)
-                3: ('Three of a Kind',set_result, 3),
-                5: ('Full House',set_result,6) # figure out how to get the correct list [trips rank,pair rank]
+                0: (0,'Nothing',[Hand.getMaxRank()]),
+                2: (1,'Pair',set_result), # (description of ranking, rank, strength)
+                3: (3,'Three of a Kind',set_result),
+                5: (6,'Full House',set_result) # figure out how to get the correct list [trips rank,pair rank]
             }
             return pairDict[len(result)] 
 
@@ -88,35 +89,45 @@ class PokerUtil:
         flush = self.isFlush(Hand)
         straight = self.isStraight(Hand)
 
+        minCardRank = Hand.getMinRank()
+        maxCardRank = Hand.getMaxRank()
+
+        result = [minCardRank,maxCardRank]
+
         if flush:
             if straight:
-                return ('Straight Flush', 8)
+                return (8,'Straight Flush',result)
             else:
-                return ('Flush', 5)
+                return (5,'Flush', result)
         elif straight:
-            return ('Straight', 4)
+            return (4,'Straight', result)
         else:
-            return ('Nothing', 0)
+            return (0,'Nothing', [Hand.getMaxRank()])
+
+    # def handRanking(self,Hand):
+    #     '''
+    #         determines the ranking of hands and returns a tuple containing the hand name and value 
+    #     '''
+    #     sumPair = self.handPairRank(Hand)
+        
+    #     if sumPair == Hand.getMaxSize():
+          
+    #         return self.flushOrStraight(Hand)
+    #     else:
+    #         pairDict = {
+    #             #5: self.flushOrStraight,
+    #             7:('Pair',1),
+    #             9:('Two Pair',2),
+    #             11:('Three of a Kind',3),
+    #             13:('Full House',6),
+    #             17:('Quads',7)
+    #         }
+    #         return pairDict[sumPair]
 
     def handRanking(self,Hand):
-        '''
-            determines the ranking of hands and returns a tuple containing the hand name and value 
-        '''
-        sumPair = self.handPairRank(Hand)
-        
-        if sumPair == Hand.getMaxSize():
-          
-            return self.flushOrStraight(Hand)
-        else:
-            pairDict = {
-                #5: self.flushOrStraight,
-                7:('Pair',1),
-                9:('Two Pair',2),
-                11:('Three of a Kind',3),
-                13:('Full House',6),
-                17:('Quads',7)
-            }
-            return pairDict[sumPair]
+        # adds the result of a pair hand evaluation and a flush or straight evaluation
+        # chooses to return the higher of the two evaluations 
+       return max([self.handPairRank(Hand),self.flushOrStraight(Hand)],key=lambda x:x[0])
         
   
 
