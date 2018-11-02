@@ -33,23 +33,9 @@ class PokerUtil:
 
     def handPairRank(self,Hand):
         '''
-            returns the rank with a pair or higher
+            classification method:
+            @return: result tuple
         '''
-        # pairList = []
-        # hand_ranks = Hand.getHandRanks()
-
-        # for rank in hand_ranks:
-        #     pairList.append(hand_ranks.count(rank))
-
-        # zip_pair_list = list(zip(pairList,hand_ranks))
-        # result = []
-
-        # for pairCount,rank in zip_pair_list:
-        #     if pairCount >= 2:
-        #         result.append((rank,pairCount))
-        
-        # set_result = list(set(result))
-
         result = self.getPairList(Hand)
         set_result = list(set(result))
 
@@ -71,7 +57,9 @@ class PokerUtil:
 
     def isStraight(self,Hand):
         '''
+            classification method
             A method that will return if a Hand provided is a Straight
+            @return boolean
         '''
 
         #initialize method variables
@@ -97,7 +85,9 @@ class PokerUtil:
 
     def isFlush(self,Hand):
         '''
-            Determine if a hand is Flush
+            Classification method
+            Method to determine if there is a flush from a Hand
+            @return boolean
         '''
         #initiate some method variables
         hand = Hand.getHeldCards()
@@ -133,26 +123,6 @@ class PokerUtil:
             return (4,'Straight', result)
         else:
             return (0,'Nothing', [Hand.getMaxRank()])
-
-    # def handRanking(self,Hand):
-    #     '''
-    #         determines the ranking of hands and returns a tuple containing the hand name and value 
-    #     '''
-    #     sumPair = self.handPairRank(Hand)
-        
-    #     if sumPair == Hand.getMaxSize():
-          
-    #         return self.flushOrStraight(Hand)
-    #     else:
-    #         pairDict = {
-    #             #5: self.flushOrStraight,
-    #             7:('Pair',1),
-    #             9:('Two Pair',2),
-    #             11:('Three of a Kind',3),
-    #             13:('Full House',6),
-    #             17:('Quads',7)
-    #         }
-    #         return pairDict[sumPair]
 
     def handRanking(self,Hand):
         # adds the result of a pair hand evaluation and a flush or straight evaluation

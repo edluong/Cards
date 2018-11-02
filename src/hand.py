@@ -1,7 +1,8 @@
+import collections
 class Hand:
     '''
         representing a hand in card games
-
+        \n
         requirements:
         - provide the exact cards in hand
         - provide the number of cards
@@ -16,6 +17,10 @@ class Hand:
         return len(self.hand)
     
     def getHeldCards(self):
+        '''
+        Getter Method \n
+        @return hand list
+        '''
         return self.hand
     
     def getMaxSize(self):
@@ -35,3 +40,6 @@ class Hand:
     
     def getMaxRank(self):
         return max(self.getHandRanks())
+    
+    def get_Sorted_Hand(self):
+        return self.hand.sort() 

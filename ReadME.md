@@ -1,5 +1,8 @@
 TO DO:
-- rewrite handRanking method due to new HandPairRank (take in account of 7 cards)
+- rewrite getPairList() -> PairCountSort(self,Hand):
+- requirements: returns a Hand now. sorts the hand based on pair count and strength of card
+
+
 - make the methods in PokerUtil static
 - write a compareHands pokerUtil function to determine the winning hand; need to modify the tuple that handRanking returns
 
