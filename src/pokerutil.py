@@ -3,9 +3,17 @@
 import collections as collections 
 class PokerUtil:
 
-    def handPairRank(self,Hand):
+    def getPairList(self, Hand, pairDef = 2):
+        # is it bad practice to just have a parameter to define what
+        # a pair is here?
+        # Thought process is that needed same method for every card
+        # So no need to rewrite if I have a parameter
         '''
-            returns the sum of the count of rank in the Hand
+        Returns a list that has the Rank and "Pairness" count associated
+        with the card.
+
+        pairDef = the number that is defined to be a "pair". Default to 2
+        if getPairList(Hand,1) is used then it will return every card 
         '''
         pairList = []
         hand_ranks = Hand.getHandRanks()
@@ -17,14 +25,36 @@ class PokerUtil:
         result = []
 
         for pairCount,rank in zip_pair_list:
-            if pairCount >= 2:
+            if pairCount >= pairDef:
                 result.append((rank,pairCount))
         
+        return result
+
+
+    def handPairRank(self,Hand):
+        '''
+            returns the rank with a pair or higher
+        '''
+        # pairList = []
+        # hand_ranks = Hand.getHandRanks()
+
+        # for rank in hand_ranks:
+        #     pairList.append(hand_ranks.count(rank))
+
+        # zip_pair_list = list(zip(pairList,hand_ranks))
+        # result = []
+
+        # for pairCount,rank in zip_pair_list:
+        #     if pairCount >= 2:
+        #         result.append((rank,pairCount))
+        
+        # set_result = list(set(result))
+
+        result = self.getPairList(Hand)
         set_result = list(set(result))
 
         # can't distinguish between two pair and quads
         # run logic to determine which is the result and structure the result
-
         if len(result) == 4: 
             if len(set_result) == 2:
                 return (2,'Two Pair',set_result)
@@ -127,11 +157,4 @@ class PokerUtil:
     def handRanking(self,Hand):
         # adds the result of a pair hand evaluation and a flush or straight evaluation
         # chooses to return the higher of the two evaluations 
-       return max([self.handPairRank(Hand),self.flushOrStraight(Hand)],key=lambda x:x[0])
-        
-  
-
-
-    
-            
-            
+       return max([self.handPairRank(Hand),self.flushOrStraight(Hand)],key=lambda x:x[0])            

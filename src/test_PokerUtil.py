@@ -2,6 +2,7 @@ from pokerutil import PokerUtil
 from hand import Hand
 from cards import Card
 from player import Player
+import collections
 
 pu = PokerUtil()
 
@@ -80,6 +81,10 @@ straight_flush.addCard(Card('Spade',11))
 straight_flush.addCard(Card('Spade',12))
 straight_flush.addCard(Card('Spade',13))
 
+'''
+base test to see if handRanking method is working correctly
+useful for regression testing
+'''
 # print(pu.handRanking(nothin))
 # print(pu.handRanking(pair))
 # print(pu.handRanking(two_pair))
@@ -90,15 +95,38 @@ straight_flush.addCard(Card('Spade',13))
 # print(pu.handRanking(quads))
 # print(pu.handRanking(straight_flush))
 
-print(pu.flushOrStraight(nothin))
-print(pu.handPairRank(pair))
-print(pu.handPairRank(two_pair))
-print(pu.handPairRank(trips))
-print(pu.flushOrStraight(straight))
-print(pu.flushOrStraight(flush))
-print(pu.handPairRank(fullhouse))
-print(pu.handPairRank(quads))
-print(pu.flushOrStraight(straight_flush))
-print(pu.handPairRank(nothin))
+# print(pu.flushOrStraight(nothin))
+# print(pu.handPairRank(pair))
+# print(pu.handPairRank(two_pair))
+# print(pu.handPairRank(trips))
+# print(pu.flushOrStraight(straight))
+# print(pu.flushOrStraight(flush))
+# print(pu.handPairRank(fullhouse))
+# print(pu.handPairRank(quads))
+# print(pu.flushOrStraight(straight_flush))
+# print(pu.handPairRank(nothin))
 
 
+# testing getPairList() for 7 cards (board and hand)
+
+board_and_hand = Hand(7)
+
+board_and_hand.addCard(Card('Spade',12))
+board_and_hand.addCard(Card('Club',13))
+board_and_hand.addCard(Card('Heart',3))
+board_and_hand.addCard(Card('Heart',13))
+board_and_hand.addCard(Card('Spade',13))
+board_and_hand.addCard(Card('Club',3))
+board_and_hand.addCard(Card('Spade',3))
+
+
+sorted_hand = pu.getPairList(board_and_hand,1)
+
+# sort the list based on Pair count then Rank
+sorted_hand.sort(key=lambda tup:(tup[1],tup[0]),reverse = True)
+
+
+
+# want every card so the 1 parameter
+# for card in sorted_hand: 
+#     print(card)
