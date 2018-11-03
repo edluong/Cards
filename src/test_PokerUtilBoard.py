@@ -76,10 +76,13 @@ print('Hero has on the turn:')
 
 # implement the more than 5 card ranking algorithm here
 
-board_and_hand = hero_hand.getHandRanks()
+#board_and_hand = hero_hand.getHandRanks()
+
+for card in pu.pair_count_sort(hero_hand):
+    print(card)
 
 # if there are pairs detected
-if(len(set(board_and_hand)) < len(board_and_hand)):
+#if(len(set(board_and_hand)) < len(board_and_hand)):
     # remove the lowest single cards
     # take highest pair and fill in all the other cards
     

@@ -1,6 +1,6 @@
 # imported to checked against the Broadway Straight (hardcoded for now)
 # Example: A K Q J 10
-import collections as collections 
+import collections
 class PokerUtil:
 
     def getPairList(self, Hand, pairDef = 2):
@@ -29,6 +29,34 @@ class PokerUtil:
                 result.append((rank,pairCount))
         
         return result
+    
+    def pair_count_sort(self,Hand,hand_size = 5):
+        '''
+            returns a list of 5 "best cards" with pair count. 
+            The list is sorted by pair strength and rank strength
+        '''
+        pairList = []
+        # get all of the cards in the hand
+        hand = Hand.getHeldCards()
+        #handSize = Hand.getMaxSize()
+        hand_ranks = Hand.getHandRanks()
+        
+        for rank in hand_ranks:
+            pairList.append(hand_ranks.count(rank))
+
+        zip_pair_hand = list(zip(pairList,hand))
+
+        # sort the list by pair then by card rank
+        zip_pair_hand.sort(key=lambda tup:(tup[0],tup[1].getRank()),reverse=True)
+
+        # for i in range(0,hand_size):
+        #     final_hand.append(zip_pair_hand[i][1])
+
+        return zip_pair_hand[:hand_size]
+    
+    def hand_pair_classify(self,):
+
+        
 
 
     def handPairRank(self,Hand):
