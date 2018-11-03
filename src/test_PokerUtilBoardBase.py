@@ -95,3 +95,37 @@ useful for regression testing
 # print(pu.handRanking(quads))
 # print(pu.handRanking(straight_flush))
 
+twotrips = Hand(6)
+
+twotrips.addCard(Card('Heart',13))
+twotrips.addCard(Card('Club',13))
+twotrips.addCard(Card('Diamond',13))
+twotrips.addCard(Card('Club',8))
+twotrips.addCard(Card('Heart',8))
+twotrips.addCard(Card('Diamond',8))
+
+
+print(pu.hand_pair_classify(twotrips))
+
+threepairs = Hand(6)
+
+threepairs.addCard(Card('Heart',13))
+threepairs.addCard(Card('Club',13))
+threepairs.addCard(Card('Diamond',11))
+threepairs.addCard(Card('Club',11))
+threepairs.addCard(Card('Heart',8))
+threepairs.addCard(Card('Diamond',8))
+
+#print(pu.hand_pair_classify(two_pair))
+print(pu.hand_pair_classify(threepairs))
+
+quadsandpair = Hand(6)
+# quadsandpair
+quadsandpair.addCard(Card('Heart',13))
+quadsandpair.addCard(Card('Club',13))
+quadsandpair.addCard(Card('Diamond',13))
+quadsandpair.addCard(Card('Spade',13))
+quadsandpair.addCard(Card('Heart',8))
+quadsandpair.addCard(Card('Spade',8))
+
+print(pu.hand_pair_classify(quadsandpair))
