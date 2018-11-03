@@ -73,7 +73,7 @@ class PokerUtil:
         for pairCount,card in zip_pair_hand[:hand_size]:
             if pairCount >= 2:
                 result.append(card.getRank())
-        
+                
         # double check the results list only contains double values again
         # this occurs if there are three pairs/ quad + pair scenarios
         for rank in result:
@@ -89,9 +89,10 @@ class PokerUtil:
                 return (2,'Two Pair',set_result)
             else:    
                 return (7,'Four of a Kind',set_result)
+        elif len(result) == 0:
+            return (0,'Nothing',[Hand.getMaxRank()])
         else:
             pairDict = {
-                0: (0,'Nothing',[Hand.getMaxRank()]),
                 2: (1,'Pair',set_result), # (description of ranking, rank, strength)
                 3: (3,'Three of a Kind',set_result),
                 5: (6,'Full House',[max(result,key=result.count),min(result,key=result.count)]) #result will return in this format [trips rank,pair rank]

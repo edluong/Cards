@@ -129,3 +129,5 @@ quadsandpair.addCard(Card('Heart',8))
 quadsandpair.addCard(Card('Spade',8))
 
 print(pu.hand_pair_classify(quadsandpair))
+
+print(pu.hand_pair_classify(nothin))
