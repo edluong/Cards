@@ -3,42 +3,63 @@
 import collections
 class PokerUtil:
 
-    def getPairList(self, Hand, pairDef = 2):
-        # is it bad practice to just have a parameter to define what
-        # a pair is here?
-        # Thought process is that needed same method for every card
-        # So no need to rewrite if I have a parameter
-        '''
-        Returns a list that has the Rank and "Pairness" count associated
-        with the card.
+    # def getPairList(self, Hand, pairDef = 2):
+    #     # is it bad practice to just have a parameter to define what
+    #     # a pair is here?
+    #     # Thought process is that needed same method for every card
+    #     # So no need to rewrite if I have a parameter
+    #     '''
+    #     Returns a list that has the Rank and "Pairness" count associated
+    #     with the card.
 
-        pairDef = the number that is defined to be a "pair". Default to 2
-        if getPairList(Hand,1) is used then it will return every card 
-        '''
-        pairList = []
-        hand_ranks = Hand.getHandRanks()
+    #     pairDef = the number that is defined to be a "pair". Default to 2
+    #     if getPairList(Hand,1) is used then it will return every card 
+    #     '''
+    #     pairList = []
+    #     hand_ranks = Hand.getHandRanks()
 
-        for rank in hand_ranks:
-            pairList.append(hand_ranks.count(rank))
+    #     for rank in hand_ranks:
+    #         pairList.append(hand_ranks.count(rank))
 
-        zip_pair_list = list(zip(pairList,hand_ranks))
-        result = []
+    #     zip_pair_list = list(zip(pairList,hand_ranks))
+    #     result = []
 
-        for pairCount,rank in zip_pair_list:
-            if pairCount >= pairDef:
-                result.append((rank,pairCount))
+    #     for pairCount,rank in zip_pair_list:
+    #         if pairCount >= pairDef:
+    #             result.append((rank,pairCount))
         
-        return result
+    #     return result
     
-    def pair_count_sort(self,Hand,hand_size = 5):
-        '''
-            returns a list of 5 "best cards" with pair count. 
-            The list is sorted by pair strength and rank strength
-        '''
+    # def pair_count_sort(self,Hand,hand_size = 5):
+    #     '''
+    #         returns a list of 5 "best cards" with pair count. 
+    #         The list is sorted by pair strength and rank strength
+    #     '''
+    #     pairList = []
+    #     # get all of the cards in the hand
+    #     hand = Hand.getHeldCards()
+    #     #handSize = Hand.getMaxSize()
+    #     hand_ranks = Hand.getHandRanks()
+        
+    #     for rank in hand_ranks:
+    #         pairList.append(hand_ranks.count(rank))
+
+    #     zip_pair_hand = list(zip(pairList,hand))
+
+    #     # sort the list by pair then by card rank
+    #     zip_pair_hand.sort(key=lambda tup:(tup[0],tup[1].getRank()),reverse=True)
+
+    #     # for i in range(0,hand_size):
+    #     #     final_hand.append(zip_pair_hand[i][1])
+
+    #     return zip_pair_hand[:hand_size]
+    
+    def hand_pair_classify(self, Hand,hand_size = 5):
+        
         pairList = []
+        result = []
         # get all of the cards in the hand
         hand = Hand.getHeldCards()
-        #handSize = Hand.getMaxSize()
         hand_ranks = Hand.getHandRanks()
         
         for rank in hand_ranks:
@@ -49,22 +70,10 @@ class PokerUtil:
         # sort the list by pair then by card rank
         zip_pair_hand.sort(key=lambda tup:(tup[0],tup[1].getRank()),reverse=True)
 
-        # for i in range(0,hand_size):
-        #     final_hand.append(zip_pair_hand[i][1])
+        for pairCount,card in zip_pair_hand[:hand_size]:
+            if pairCount >= 2:
+                result.append(card.getRank())
 
-        return zip_pair_hand[:hand_size]
-    
-    def hand_pair_classify(self,):
-
-        
-
-
-    def handPairRank(self,Hand):
-        '''
-            classification method:
-            @return: result tuple
-        '''
-        result = self.getPairList(Hand)
         set_result = list(set(result))
 
         # can't distinguish between two pair and quads
@@ -83,7 +92,31 @@ class PokerUtil:
             }
             return pairDict[len(result)] 
 
-    def isStraight(self,Hand):
+    # def handPairRank(self,Hand):
+    #     '''
+    #         classification method:
+    #         @return: result tuple
+    #     '''
+    #     result = self.getPairList(Hand)
+    #     set_result = list(set(result))
+
+    #     # can't distinguish between two pair and quads
+    #     # run logic to determine which is the result and structure the result
+    #     if len(result) == 4: 
+    #         if len(set_result) == 2:
+    #             return (2,'Two Pair',set_result)
+    #         else:    
+    #             return (7,'Four of a Kind',set_result)
+    #     else:
+    #         pairDict = {
+    #             0: (0,'Nothing',[Hand.getMaxRank()]),
+    #             2: (1,'Pair',set_result), # (description of ranking, rank, strength)
+    #             3: (3,'Three of a Kind',set_result),
+    #             5: (6,'Full House',set_result) # figure out how to get the correct list [trips rank,pair rank]
+    #         }
+    #         return pairDict[len(result)] 
+
+    def isStraight(self,Hand,hand_size = 5):
         '''
             classification method
             A method that will return if a Hand provided is a Straight
@@ -96,7 +129,7 @@ class PokerUtil:
         hand_rank = []
         for card in Hand.getHeldCards():
             hand_rank.append(card.getRank())
-        hand_size = Hand.getHandSize()
+        #hand_size = Hand.getHandSize()
         hand_rank.sort()
         
         # compare if the next element in the list of ranks to see if it is 1 larger

@@ -49,7 +49,7 @@ print('Hero has on the flop:')
 for card in board:
     hero_hand.addCard(card)
 
-print(pu.handRanking(hero_hand))
+print(pu.hand_pair_classify(hero_hand))
 
 print("---------------------------")
 
@@ -78,8 +78,7 @@ print('Hero has on the turn:')
 
 #board_and_hand = hero_hand.getHandRanks()
 
-for card in pu.pair_count_sort(hero_hand):
-    print(card)
+print(pu.hand_pair_classify(hero_hand))
 
 # if there are pairs detected
 #if(len(set(board_and_hand)) < len(board_and_hand)):
