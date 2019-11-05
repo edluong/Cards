@@ -4,7 +4,7 @@ class Player:
     '''
         Player of a Texas Holdem Game
 
-        Requirements:
+       Requirements:
         - Is the dealer or not
         - Has chips (stack size)
         - Can bet (call, raise, fold) (decrease the stack size)
@@ -30,10 +30,14 @@ class Player:
     def bet(self,betAmount):
         newStackSize = self.stackSize - betAmount
         if newStackSize < 0:
-            print('!!!')
-            print(' Stack size is: '+ str(self.stackSize) +' and bet amount is: '+ str(betAmount))
-            print(" Can't bet more than your stack!")
-            print('!!!')
+            errorMsg = '''
+    !!!
+    Stack size is: {} and bet amount is {}
+    Can't bet more than your stack!
+    !!!
+            '''
+            print(errorMsg.format(str(self.stackSize),str(betAmount)))
+
         else:
             self.stackSize = self.stackSize - betAmount
    
